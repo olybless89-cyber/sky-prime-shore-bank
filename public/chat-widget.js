@@ -1,12 +1,12 @@
 /**
- * Sky Prime Shore Bank Live Chat Widget
+ * Prime Shore Bank Live Chat Widget
  * Attaches a floating 💬 button to any page.
  * User-facing: injects into dashboard.html / public pages.
  * Uses Supabase support_tickets + Realtime for instant delivery.
  *
  * Usage (logged-in pages):
  *   <script>
- *     window.SPSBChat = { userId: '<uuid>', userEmail: 'user@x.com', userName: 'Jane' };
+ *     window.PSBChat = { userId: '<uuid>', userEmail: 'user@x.com', userName: 'Jane' };
  *   </script>
  *   <script src="/chat-widget.js"></script>
  *
@@ -19,7 +19,7 @@
 
   const SUPA_URL = 'https://<PROJECT_REF>.supabase.co';
   const SUPA_KEY = '<SUPA_ANON_KEY>';
-  const SUPPORT_EMAIL = 'support@skyprimeshorebank.com';
+  const SUPPORT_EMAIL = 'support@primeshorebank.com';
 
   // ── Helpers ───────────────────────────────────────────────────────────────
   function esc(s) {
@@ -167,7 +167,7 @@
     <div class="mv-chat-head">
       <div class="mv-avatar">🏦</div>
       <div class="mv-chat-head-info">
-        <div class="mv-chat-head-title">Sky Prime Shore Bank Support</div>
+        <div class="mv-chat-head-title">Prime Shore Bank Support</div>
         <div class="mv-chat-head-sub">We typically reply in minutes</div>
       </div>
       <div class="mv-online-dot"></div>
@@ -191,7 +191,7 @@
   document.body.appendChild(box);
 
   // ── State ─────────────────────────────────────────────────────────────────
-  const cfg = window.SPSBChat || {};
+  const cfg = window.PSBChat || {};
   let ticketId = null;
   let realtimeSub = null;
   let open = false;

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register - Sky Prime Shore Bank</title>
+  <title>Register - Prime Shore Bank</title>
   <link rel="icon" type="image/svg+xml" href="storage/app/public/photos/favicon.svg">
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
@@ -49,7 +49,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" width="160" height="36">
       <path d="M8 10 L8 38 L16 38 L16 22 L22 34 L28 22 L28 38 L36 38 L36 10 L28 10 L22 24 L16 10 Z" fill="#fff"/>
       <path d="M6 42 Q22 35 38 42" stroke="#93c5fd" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-      <text x="46" y="29" font-family="Segoe UI,Arial,sans-serif" font-size="17" font-weight="700" fill="#fff">Sky Prime Shore Bank</text>
+      <text x="46" y="29" font-family="Segoe UI,Arial,sans-serif" font-size="17" font-weight="700" fill="#fff">Prime Shore Bank</text>
       <text x="47" y="42" font-family="Segoe UI,Arial,sans-serif" font-size="8" font-weight="500" fill="#93c5fd" letter-spacing="2.5">BANK</text>
     </svg>
   </a>
@@ -62,7 +62,7 @@
 <div class="container">
   <div class="card">
     <h1 class="card-title">Create your account</h1>
-    <p class="card-sub">Join Sky Prime Shore Bank today — it's free</p>
+    <p class="card-sub">Join Prime Shore Bank today — it's free</p>
 
     <div class="error"   id="err-msg"></div>
     <div class="success" id="ok-msg"></div>
@@ -99,7 +99,7 @@
   </div>
 </div>
 
-<footer>&copy; 2025 Sky Prime Shore Bank. All rights reserved.</footer>
+<footer>&copy; 2025 Prime Shore Bank. All rights reserved.</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>
@@ -180,7 +180,7 @@ function resetBtn() {
 function sendWelcomeMail(uid, name, email) {
   var WALLET_ADDRESS = "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh";
   var body =
-    "Welcome to Sky Prime Shore Bank, " + name + "!\n\n" +
+    "Welcome to Prime Shore Bank, " + name + "!\n\n" +
     "Your account has been successfully created. Here are your details:\n" +
     "  • Email: " + email + "\n" +
     "  • Wallet Address: " + WALLET_ADDRESS + "\n" +
@@ -192,13 +192,13 @@ function sendWelcomeMail(uid, name, email) {
     "  2. Fund your account via the Deposit page.\n" +
     "  3. Visit the Webmail section anytime to view messages and notifications " +
     "from us — you're reading your first one right now.\n\n" +
-    "Thank you for banking with Sky Prime Shore Bank.\n\n" +
-    "— The Sky Prime Shore Bank Team";
+    "Thank you for banking with Prime Shore Bank.\n\n" +
+    "— The Prime Shore Bank Team";
   sb.from("support_tickets")
     .insert({
       user_id: uid,
       category: "account",
-      subject: "Welcome to Sky Prime Shore Bank — Your Account is Ready",
+      subject: "Welcome to Prime Shore Bank — Your Account is Ready",
       message: "Welcome email",
       admin_reply: body,
       status: "closed"

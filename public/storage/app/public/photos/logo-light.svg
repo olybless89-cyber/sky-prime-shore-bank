@@ -17,7 +17,7 @@
     <polyline points="27,6 33,0 39,6" fill="none" stroke="url(#accentGradL)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
     <line x1="33" y1="0" x2="33" y2="18" stroke="url(#accentGradL)" stroke-width="2.5" stroke-linecap="round"/>
   </g>
-  <text x="58" y="38" font-family="'Georgia', 'Times New Roman', serif" font-size="22" font-weight="700" fill="#ffffff" letter-spacing="0">Sky Prime</text>
-  <text x="122" y="38" font-family="'Georgia', 'Times New Roman', serif" font-size="22" font-weight="400" fill="#93c5fd" letter-spacing="0">Shore Bank</text>
+  <text x="58" y="38" font-family="'Georgia', 'Times New Roman', serif" font-size="22" font-weight="700" fill="#ffffff" letter-spacing="0">Prime Shore</text>
+  <text x="122" y="38" font-family="'Georgia', 'Times New Roman', serif" font-size="22" font-weight="400" fill="#93c5fd" letter-spacing="0">Bank</text>
   <text x="58" y="51" font-family="'Arial', sans-serif" font-size="7.5" font-weight="400" fill="rgba(255,255,255,0.6)" letter-spacing="2.5">DIGITAL BANKING</text>
 </svg>

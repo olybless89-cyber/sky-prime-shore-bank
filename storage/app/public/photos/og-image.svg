@@ -59,12 +59,12 @@
   </g>
 
   <!-- Wordmark -->
-  <text x="90" y="430" font-family="Georgia, 'Times New Roman', serif" font-size="88" font-weight="700" fill="#ffffff" letter-spacing="0">Sky Prime</text>
-  <text x="440" y="430" font-family="Georgia, 'Times New Roman', serif" font-size="88" font-weight="400" fill="#60a5fa" letter-spacing="0">Shore Bank</text>
+  <text x="90" y="430" font-family="Georgia, 'Times New Roman', serif" font-size="88" font-weight="700" fill="#ffffff" letter-spacing="0">Prime Shore</text>
+  <text x="440" y="430" font-family="Georgia, 'Times New Roman', serif" font-size="88" font-weight="400" fill="#60a5fa" letter-spacing="0">Bank</text>
 
   <!-- Tagline -->
   <text x="90" y="490" font-family="Arial, sans-serif" font-size="26" font-weight="300" fill="rgba(255,255,255,0.55)" letter-spacing="8">DIGITAL BANKING  ·  SECURE  ·  GLOBAL</text>
 
   <!-- Domain -->
-  <text x="90" y="570" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="rgba(255,255,255,0.35)" letter-spacing="2">skyprimeshorebank.com</text>
+  <text x="90" y="570" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="rgba(255,255,255,0.35)" letter-spacing="2">primeshorebank.com</text>
 </svg>

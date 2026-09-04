@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard — Sky Prime Shore Bank</title>
+  <title>Dashboard — Prime Shore Bank</title>
   <link rel="icon" type="image/svg+xml" href="storage/app/public/photos/favicon.svg">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
@@ -282,7 +282,7 @@ footer{background:var(--white);border-top:1px solid var(--border);padding:14px 2
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" width="130" height="30">
         <path d="M8 10 L8 38 L16 38 L16 22 L22 34 L28 22 L28 38 L36 38 L36 10 L28 10 L22 24 L16 10 Z" fill="#0f2356"/>
         <path d="M6 42 Q22 35 38 42" stroke="#2563eb" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-        <text x="46" y="29" font-family="Inter,sans-serif" font-size="17" font-weight="700" fill="#0f2356">Sky Prime Shore Bank</text>
+        <text x="46" y="29" font-family="Inter,sans-serif" font-size="17" font-weight="700" fill="#0f2356">Prime Shore Bank</text>
         <text x="47" y="42" font-family="Inter,sans-serif" font-size="8" font-weight="500" fill="#2563eb" letter-spacing="2.5">BANK</text>
       </svg>
     </div>
@@ -575,7 +575,7 @@ footer{background:var(--white);border-top:1px solid var(--border);padding:14px 2
       <div style="max-width:380px">
         <div style="background:linear-gradient(135deg,#0f2356,#2563eb);border-radius:18px;padding:28px;color:#fff;position:relative;overflow:hidden">
           <div style="position:absolute;top:-20px;right:-20px;width:140px;height:140px;background:rgba(255,255,255,.06);border-radius:50%"></div>
-          <div style="font-size:11px;opacity:.6;letter-spacing:2px;text-transform:uppercase;margin-bottom:24px">Sky Prime Shore Bank</div>
+          <div style="font-size:11px;opacity:.6;letter-spacing:2px;text-transform:uppercase;margin-bottom:24px">Prime Shore Bank</div>
           <div style="font-size:22px;font-weight:700;letter-spacing:3px;font-family:monospace;margin-bottom:22px" id="card-num">•••• •••• •••• ——</div>
           <div style="display:flex;justify-content:space-between;align-items:flex-end">
             <div><div style="font-size:10px;opacity:.6;margin-bottom:3px">CARDHOLDER</div><div style="font-size:14px;font-weight:700" id="card-name">—</div></div>
@@ -693,7 +693,7 @@ footer{background:var(--white);border-top:1px solid var(--border);padding:14px 2
     <!-- ═══ WEBMAIL ═══ -->
     <div class="section" id="section-webmail">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px">
-        <div><h2 style="font-size:19px;font-weight:800;color:var(--navy)">Webmail</h2><p style="font-size:13px;color:var(--muted);margin-top:3px">Your inbox — messages and notifications from Sky Prime Shore Bank</p></div>
+        <div><h2 style="font-size:19px;font-weight:800;color:var(--navy)">Webmail</h2><p style="font-size:13px;color:var(--muted);margin-top:3px">Your inbox — messages and notifications from Prime Shore Bank</p></div>
         <button class="btn btn-primary btn-sm" onclick="openModal('modal-ticket')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg> Compose</button>
       </div>
       <div class="mail-layout">
@@ -724,9 +724,9 @@ footer{background:var(--white);border-top:1px solid var(--border);padding:14px 2
     <div style="display:flex;align-items:center;gap:8px">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" width="90" height="20">
         <path d="M8 10 L8 38 L16 38 L16 22 L22 34 L28 22 L28 38 L36 38 L36 10 L28 10 L22 24 L16 10 Z" fill="#0f2356"/>
-        <text x="42" y="29" font-family="Inter,sans-serif" font-size="15" font-weight="700" fill="#0f2356">Sky Prime Shore Bank</text>
+        <text x="42" y="29" font-family="Inter,sans-serif" font-size="15" font-weight="700" fill="#0f2356">Prime Shore Bank</text>
       </svg>
-      <span>© 2025 Sky Prime Shore Bank. All rights reserved.</span>
+      <span>© 2025 Prime Shore Bank. All rights reserved.</span>
     </div>
     <div style="display:flex;gap:18px">
       <a href="privacy-policy" style="color:var(--muted);text-decoration:none">Privacy Policy</a>
@@ -1013,7 +1013,7 @@ async function doTransfer(){
     '  • Account/IBAN: '+account+'\n' +
     '  • Bank: '+bank+'\n' +
     (reason?'  • Note: '+reason+'\n':'') +
-    '\nFunds have been placed on hold pending approval. You will receive another message once the transfer is processed.\n\n— Sky Prime Shore Bank',
+    '\nFunds have been placed on hold pending approval. You will receive another message once the transfer is processed.\n\n— Prime Shore Bank',
     'billing');
   ['tf-name','tf-account','tf-bank','tf-amount','tf-reason'].forEach(id=>document.getElementById(id).value='');
   setTimeout(()=>closeModal('modal-transfer'),2500);
@@ -1032,7 +1032,7 @@ async function doQuickTransfer(){
   showAlert('qt-ok','Transfer submitted for approval!');
   sendInboxMail('Quick Transfer Submitted — $'+amount.toFixed(2),
     'Your quick transfer request has been submitted and is pending admin approval.\n\n' +
-    '  • Amount: $'+amount.toFixed(2)+'\n  • Recipient: '+name+'\n  • Account/IBAN: '+account+'\n  • Bank: '+bank+'\n\n— Sky Prime Shore Bank',
+    '  • Amount: $'+amount.toFixed(2)+'\n  • Recipient: '+name+'\n  • Account/IBAN: '+account+'\n  • Bank: '+bank+'\n\n— Prime Shore Bank',
     'billing');
   ['qt-name','qt-account','qt-amount','qt-bank'].forEach(id=>document.getElementById(id).value='');
   loadMyTransfers();
@@ -1053,7 +1053,7 @@ async function doLoan(){
   sendInboxMail('Loan Application Submitted — $'+amount.toFixed(2),
     'Your loan application has been received and is under review.\n\n' +
     '  • Amount: $'+amount.toFixed(2)+'\n  • Term: '+term+' months\n  • Purpose: '+purpose+'\n\n' +
-    'Our team will assess your application and notify you of the decision. This usually takes 1–3 business days.\n\n— Sky Prime Shore Bank',
+    'Our team will assess your application and notify you of the decision. This usually takes 1–3 business days.\n\n— Prime Shore Bank',
     'billing');
   setTimeout(()=>closeModal('modal-loan'),2500);
 }
@@ -1073,7 +1073,7 @@ async function doTicket(){
     'Your message has been delivered to our support team.\n\n' +
     '  • Subject: '+subject+'\n  • Category: '+mailCategoryLabel(category)+'\n\n' +
     'Your message:\n"'+message+'"\n\n' +
-    'We will reply to you here in Webmail as soon as possible.\n\n— Sky Prime Shore Bank',
+    'We will reply to you here in Webmail as soon as possible.\n\n— Prime Shore Bank',
     category);
   setTimeout(()=>closeModal('modal-ticket'),2500);
 }
@@ -1131,8 +1131,8 @@ var depMethod = 'bank_transfer';
 var depChipActive = null;
 
 var DEP_METHOD_INFO = {
-  bank_transfer: '<strong style="color:var(--navy)">Bank Transfer Details</strong><br>Bank: <strong>Sky Prime Shore Bank International Bank</strong><br>Account Name: Sky Prime Shore Bank Operations<br>SWIFT/BIC: MVCBUS33<br>IBAN: GB29NWBK60161331926819<br><br><span style="color:#d97706">⚠ Please include your wallet address as the transfer reference. Funds credited within 1–3 business days after admin approval.</span>',
-  paypal: '<strong style="color:var(--navy)">PayPal Deposit</strong><br>PayPal Email: <strong>deposits@skyprimeshorebank.com</strong><br><br>Send your payment via PayPal to the address above, then click "Continue to Deposit" to submit your request. Include your Sky Prime Shore Bank wallet address in the PayPal note.<br><br><span style="color:#d97706">⚠ PayPal deposits are reviewed within 24 hours.</span>',
+  bank_transfer: '<strong style="color:var(--navy)">Bank Transfer Details</strong><br>Bank: <strong>Prime Shore Bank International Bank</strong><br>Account Name: Prime Shore Bank Operations<br>SWIFT/BIC: MVCBUS33<br>IBAN: GB29NWBK60161331926819<br><br><span style="color:#d97706">⚠ Please include your wallet address as the transfer reference. Funds credited within 1–3 business days after admin approval.</span>',
+  paypal: '<strong style="color:var(--navy)">PayPal Deposit</strong><br>PayPal Email: <strong>deposits@primeshorebank.com</strong><br><br>Send your payment via PayPal to the address above, then click "Continue to Deposit" to submit your request. Include your Prime Shore Bank wallet address in the PayPal note.<br><br><span style="color:#d97706">⚠ PayPal deposits are reviewed within 24 hours.</span>',
   bitcoin: '<strong style="color:var(--navy)">Bitcoin (BTC) Deposit</strong><br>Wallet Address:<br><code style="background:#f1f5f9;padding:4px 8px;border-radius:6px;font-size:12px;word-break:break-all;display:block;margin:6px 0">'+WALLET_ADDRESS+'</code>Network: Bitcoin (BTC) Mainnet only<br><br><span style="color:#d97706">⚠ Send only BTC to the wallet address above. After sending, click "Continue to Deposit" so admin can verify and credit your account. Confirmations may take up to 1 hour.</span>'
 };
 
@@ -1196,7 +1196,7 @@ async function submitDeposit() {
   sendInboxMail('Deposit Request Submitted — $' + amount.toFixed(2),
     'Your deposit request has been received and is pending verification.\n\n' +
     '  • Amount: $' + amount.toFixed(2) + '\n  • Method: ' + methodLabel + '\n  • Reference: ' + ref + '\n\n' +
-    'Your account will be credited once the payment is confirmed by our team.\n\n— Sky Prime Shore Bank',
+    'Your account will be credited once the payment is confirmed by our team.\n\n— Prime Shore Bank',
     'billing');
   document.getElementById('dep-amount').value = '';
   document.getElementById('dep-amount-display').textContent = '.00';
@@ -1240,16 +1240,16 @@ function mailPreview(m) {
   return (body || '').replace(/\s+/g, ' ').trim().slice(0, 80);
 }
 
-// In-platform addresses: support mail comes from support@skyprimeshorebank.com,
+// In-platform addresses: support mail comes from support@primeshorebank.com,
 // the user's own address is their account number on the bank domain.
-var SUPPORT_EMAIL = 'support@skyprimeshorebank.com';
+var SUPPORT_EMAIL = 'support@primeshorebank.com';
 var MAIL_PLACEHOLDERS = ['Admin message', 'Notification', 'Welcome email', '__chat_init__'];
 function userMailAddress() {
   var acct = (userProfile && userProfile.account_number ? userProfile.account_number : (userId || 'user')).toLowerCase();
-  return acct + '@skyprimeshorebank.com';
+  return acct + '@primeshorebank.com';
 }
 function mailFromLabel(m) {
-  return isMailInbound(m) ? 'Sky Prime Shore Bank Support' : (userProfile.full_name || userProfile.email || 'You');
+  return isMailInbound(m) ? 'Prime Shore Bank Support' : (userProfile.full_name || userProfile.email || 'You');
 }
 function mailFromAddress(m) {
   return isMailInbound(m) ? SUPPORT_EMAIL : userMailAddress();
@@ -1273,13 +1273,13 @@ function mailCategoryLabel(cat) {
 // Idempotent: checks for an existing welcome ticket before inserting.
 async function ensureWelcomeEmail() {
   if (!userId || !userProfile) return;
-  var WELCOME_SUBJECT = 'Welcome to Sky Prime Shore Bank — Your Account is Ready';
+  var WELCOME_SUBJECT = 'Welcome to Prime Shore Bank — Your Account is Ready';
   var { data: existing } = await sb.from('support_tickets')
     .select('id').eq('user_id', userId).eq('subject', WELCOME_SUBJECT).limit(1);
   if (existing && existing.length) return; // already has a welcome email
   var name = userProfile.full_name || (userProfile.email || '').split('@')[0];
   var body =
-    'Welcome to Sky Prime Shore Bank, ' + name + '!\n\n' +
+    'Welcome to Prime Shore Bank, ' + name + '!\n\n' +
     'Your account has been successfully created. Here are your details:\n' +
     '  • Email: ' + (userProfile.email || '') + '\n' +
     '  • Wallet Address: ' + WALLET_ADDRESS + '\n' +
@@ -1291,14 +1291,14 @@ async function ensureWelcomeEmail() {
     '  2. Fund your account via the Deposit page.\n' +
     '  3. Visit the Webmail section anytime to view messages and notifications ' +
     'from us — you are reading your first one right now.\n\n' +
-    'Thank you for banking with Sky Prime Shore Bank.\n\n' +
-    '— The Sky Prime Shore Bank Team';
+    'Thank you for banking with Prime Shore Bank.\n\n' +
+    '— The Prime Shore Bank Team';
   var { error } = await sb.from('support_tickets').insert({
     user_id: userId, category: 'account', subject: WELCOME_SUBJECT,
     message: 'Welcome email', admin_reply: body, status: 'closed'
   });
   if (error) { console.warn('ensureWelcomeEmail insert error:', error.message); }
-  else { setTimeout(function(){ showToast('Welcome to Sky Prime Shore Bank', 'A welcome message is in your inbox. Tap to read it.', function(){ showSection('webmail', null); }); }, 800); }
+  else { setTimeout(function(){ showToast('Welcome to Prime Shore Bank', 'A welcome message is in your inbox. Tap to read it.', function(){ showSection('webmail', null); }); }, 800); }
 }
 
 // Arrival detection: remember, per message id, whether an admin_reply was
@@ -1316,7 +1316,7 @@ async function loadMail() {
       var hasReply = !!(m.admin_reply && m.admin_reply.trim());
       var newlyArrived = hasReply && knownMailState[m.id] !== true && !readIds[m.id];
       if (newlyArrived) {
-        showToast('New message — Sky Prime Shore Bank Support', m.subject || '(no subject)',
+        showToast('New message — Prime Shore Bank Support', m.subject || '(no subject)',
           function(){ showSection('webmail', null); });
       }
     });
@@ -1435,7 +1435,7 @@ function renderMailPane(thread) {
     }
     if (r.admin_reply && r.admin_reply.trim()) {
       bubbles.push({ side: 'in', text: r.admin_reply, ts: r.updated_at || r.created_at,
-        from: 'Sky Prime Shore Bank Support', addr: SUPPORT_EMAIL });
+        from: 'Prime Shore Bank Support', addr: SUPPORT_EMAIL });
     }
   });
   var pane = document.getElementById('mail-pane');
@@ -1445,7 +1445,7 @@ function renderMailPane(thread) {
       '<div class="mail-read-meta">' +
         '<span class="mail-cat">' + mailCategoryLabel(threadLatestRow(thread).category) + '</span>' +
         '<span style="font-size:12px">' + bubbles.length + ' message' + (bubbles.length === 1 ? '' : 's') +
-        ' · Sky Prime Shore Bank Support &lt;' + SUPPORT_EMAIL + '&gt;</span>' +
+        ' · Prime Shore Bank Support &lt;' + SUPPORT_EMAIL + '&gt;</span>' +
       '</div>' +
     '</div>' +
     '<div class="mail-thread">' +
@@ -1580,7 +1580,7 @@ init();
     const interval = setInterval(function () {
       if (typeof userId !== 'undefined' && userId) {
         clearInterval(interval);
-        window.SPSBChat = {
+        window.PSBChat = {
           userId:    userId,
           userEmail: userProfile && userProfile.email ? userProfile.email : '',
           userName:  userProfile && userProfile.full_name ? userProfile.full_name : ''

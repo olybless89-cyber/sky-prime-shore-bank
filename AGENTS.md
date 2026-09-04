@@ -1,4 +1,4 @@
-# AGENTS.md ‚Äî Sky Prime Shore Bank (skyprimeshorebank.com)
+# AGENTS.md ‚Äî Prime Shore Bank (primeshorebank.com)
 
 ## What this project actually is
 A **static HTML/JS** banking demo site. Despite shipping Laravel-style scaffolding
@@ -65,7 +65,7 @@ demo key `eyJ...CRXP1A7...` (JWT ref `supabase-demo`), API at `127.0.0.1:54321`.
 The live schema (tables, RLS, RPCs, the digit-free `handle_new_user` trigger)
 must be applied to the local DB from `SQL/supabase/002_full_app_schema.sql`
 and `SQL/supabase/003_fix_review_rpc_note_ambiguity_and_digit_free_account.sql`.
-Admin seed user: `admin@skyprimeshorebank.com` (set `profiles.role='admin'`).
+Admin seed user: `admin@primeshorebank.com` (set `profiles.role='admin'`).
 Verified live in-browser against the self-hosted stack: register, login,
 admin dashboard + All Users (no ambiguous-role error), deposit submit.
 
@@ -239,7 +239,7 @@ authoritative, standalone redefinition of the admin user-management RPCs:
 - `admin_set_user_status(target_id uuid, new_status text)` ‚Äî `SECURITY
   DEFINER` (bypasses RLS so admins can activate/deactivate any user), with
   admin-only guard + a self-status-change block (errcode 44000).
-- Ensures `admin@skyprimeshorebank.com` / `admin@gmail.com` have `role='admin'`.
+- Ensures `admin@primeshorebank.com` / `admin@gmail.com` have `role='admin'`.
 Verified live in-browser: All Users lists every user (no RLS banner), and the
 toggle status button flips users active‚Üîinactive through the RPC.
 
@@ -317,7 +317,7 @@ expected 22023 validation error proves existence).
     same) ‚Äî the old code re-pushed it on every UPDATE.
 
 ## Support email + live chat everywhere + admin Email section (009) ‚Äî 2026-08-23
-- **Support email identity** is `support@skyprimeshorebank.com`. It is shown on
+- **Support email identity** is `support@primeshorebank.com`. It is shown on
   /contact (Email Us card + footer, replacing a stray old template email
   leftover) and in the chat widget's guest form.
 - **Chat widget is now on every public page**: it was missing from
@@ -358,8 +358,8 @@ expected 22023 validation error proves existence).
 
 ## Webmail polish (threading + internal addresses + arrival polling) ‚Äî 2026-08-23
 - **Internal addresses**: support mail displays as
-  `Sky Prime Shore Bank Support <support@skyprimeshorebank.com>`; a registered user's
-  address is `<account_number lowercase>@skyprimeshorebank.com`
+  `Prime Shore Bank Support <support@primeshorebank.com>`; a registered user's
+  address is `<account_number lowercase>@primeshorebank.com`
   (`userMailAddress()` in dashboard.html, `userMailAddr()` in admin.html).
   Guests keep their real email. Purely presentational ‚Äî no SMTP involved.
 - **Threading** (both dashboard Webmail and admin Email section): messages

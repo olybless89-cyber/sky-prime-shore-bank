@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Self-contained Sky Prime Shore Bank server (no npm deps, no PHP).
+// Self-contained Prime Shore Bank server (no npm deps, no PHP).
 //
 // - Serves the static site from public/ with the clean-URL rewrites from
 //   vercel.json (/login -> /login.html, /admin -> /admin.html, etc.).
@@ -208,7 +208,7 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, '0.0.0.0', () => {
-  console.log(`Sky Prime Shore Bank server listening on http://0.0.0.0:${PORT}`);
+  console.log(`Prime Shore Bank server listening on http://0.0.0.0:${PORT}`);
   console.log(`  static root: ${PUBLIC}`);
   console.log(`  supabase proxy: /supa -> ${SUPABASE_API_URL}`);
 });

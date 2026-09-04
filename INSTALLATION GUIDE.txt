@@ -27,9 +27,9 @@ Locate The SMTP in admin settings and app settings and Use default configuration
 
 *** Admin Logins ***
 
-https://skyprimeshorebank.com/admin-login
+https://primeshorebank.com/admin-login
 
-Email: admin@skyprimeshorebank.com (create your admin via the SQL seed in README)
+Email: admin@primeshorebank.com (create your admin via the SQL seed in README)
 
 Password: (set your own via Supabase Auth — no default passwords)
 

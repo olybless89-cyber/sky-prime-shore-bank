@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Static-file router for Sky Prime Shore Bank.
+ * Static-file router for Prime Shore Bank.
  *
  * The site is a set of static HTML pages backed by Supabase in the browser.
  * This router powers the `php -S 0.0.0.0:$PORT -t public public/router.php`

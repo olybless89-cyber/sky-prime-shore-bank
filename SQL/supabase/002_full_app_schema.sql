@@ -1,5 +1,5 @@
 -- ─────────────────────────────────────────────────────────────────────────────
--- Sky Prime Shore Bank — full application schema (Postgres / Supabase).
+-- Prime Shore Bank — full application schema (Postgres / Supabase).
 --
 -- This reconstructs the live Supabase project's application layer from the
 -- client code so the site can run against any Supabase instance (local or

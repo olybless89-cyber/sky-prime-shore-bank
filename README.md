@@ -1,8 +1,8 @@
-# Sky Prime Shore Bank
+# Prime Shore Bank
 
-**skyprimeshorebank.com** — a static HTML/JS digital banking application backed by
+**primeshorebank.com** — a static HTML/JS digital banking application backed by
 **Supabase**. This repository is an independent rebrand of a banking template,
-fully rebranded as **Sky Prime Shore Bank**.
+fully rebranded as **Prime Shore Bank**.
 
 The application is served from the files in `public/` via
 `public/router.php` (PHP built-in server) or `serve.js` (Node,
@@ -133,7 +133,7 @@ No minification or bundling is required; ensure the CDN-fetched
 2. Import the repo into **Vercel** (use the directory `public/`; framework
    preset: Other). Vercel's `vercel.json` clean-URL rewrites map `/login` ->
    `/login.html`, `/admin/*` -> `/admin.html`, etc..
-3. Point your domain (e.g. `skyprimeshorebank.com`)at the Vercel deployment..
+3. Point your domain (e.g. `primeshorebank.com`)at the Vercel deployment..
 4. Supabase migrations auto-run on push via GitHub Actions (ifthe
    `SUPABASE_ACCESS_TOKEN` / `SUPABASE_PROJECT_REF` Action secrets are set)..
 
@@ -156,7 +156,7 @@ No minification or bundling is required; ensure the CDN-fetched
 | Supabase (Postgres + Auth) | database, auth, RPCs, Edge Function (register) | `SUPA_URL` / `SUPA_KEY` placeholders; SQL migrations in `SQL/supabase/` |
 | Supabase register Edge Function | mints 10-digit account numbers on signup; owners project | `https://<PROJECT_REF>.supabase.co/functions/v1/register` (in `register.html`) |
 | Vercel | hoststhe static frontend + clean-URL rewrites | `vercel.json`, `public/` |
-| email (optional) | contact/webmail are in-app only —no SMTP used | support@skyprimeshorebank.com display addresses |
+| email (optional) | contact/webmail are in-app only —no SMTP used | support@primeshorebank.com display addresses |
 
 No payment gateways, SMS providers, analytics, or file storage services are
 used by this codebase; deposit/withdrawal flows are admin-reviewed workflows with
@@ -165,17 +165,17 @@ the in-app bank-transfer / PayPal / Bitcoin details), not live payment SDKs..
 ## Admin setup procedure
 
 1. Create the admin user via Supabase Auth (email e.g
-   `admin@skyprimeshorebank.com`)or seed directly:
+   `admin@primeshorebank.com`)or seed directly:
    ```sql
    -- in the Supabase SQL editor:
    insert into auth.users (id, email, raw_user_meta_data, encrypted_password)
-   values (gen_random_uuid(),'admin@skyprimeshorebank.com','{"full_name":"Administrator"}', crypt('change-me', gen_salt('bf'));;
+   values (gen_random_uuid(),'admin@primeshorebank.com','{"full_name":"Administrator"}', crypt('change-me', gen_salt('bf'));;
    insert into public.profiles (id, email, full_name, role, status, account_number)
    select id, email, coalesce(raw_user_meta_data->>'full_name',''), 'admin', 'active', '0000000001'
-   from auth.users where email = 'admin@skyprimeshorebank.com';;
+   from auth.users where email = 'admin@primeshorebank.com';;
    ```
 2. The migration `005` also auto-promotes any profile with email
-   `admin@skyprimeshorebank.com` to `role='admin'` on every apply..
+   `admin@primeshorebank.com` to `role='admin'` on every apply..
 3. Login at `/admin-login` (or `/login` with that email).. Role routing sends
    admins to `/admin`, users to `/dashboard`..
 
@@ -200,5 +200,5 @@ the in-app bank-transfer / PayPal / Bitcoin details), not live payment SDKs..
 ## License / educational notice
 
 This repository is a rebrand of the source banking template for
-**Sky Prime Shore Bank** (independent project.. The original template is
+**Prime Shore Bank** (independent project.. The original template is
 for educational use; no illegal banking use is endorsed..
