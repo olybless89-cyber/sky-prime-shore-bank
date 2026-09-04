@@ -1,0 +1,15 @@
+# dependencies
+node_modules/
+
+# environment / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+service-role.json
+
+# logs / caches
+*.log
+.DS_Store
+tmp/
