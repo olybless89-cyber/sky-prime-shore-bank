@@ -13,3 +13,6 @@ service-role.json
 *.log
 .DS_Store
 tmp/
+
+# Supabase CLI cache
+supabase/.temp/
