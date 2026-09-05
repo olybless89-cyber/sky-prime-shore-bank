@@ -162,6 +162,23 @@ Fix (in repo):
 `<PROJECT_REF>` and returns tokens for `sb.auth.setSession`). The
 numeric format came from owner commit 146539c "fix: generate 10-digit
 numeric-only account numbers on signup" (register.html only).
+**2026-09-05 — "Network error" on /register root cause + fix:** the
+`register` Edge Function was **never deployed** to the live Supabase project,
+so every POST returned 404 `NOT_FOUND` and the page's `.catch()`
+surfaced the misleading "Network error" to the user. Fix (committed in
+`register.html` + `public/register.html`): the page now **tries the edge
+function first, and falls back to the standard `sb.auth.signUp` path when
+it's missing/errored/returns no session** — and then explicitly ensures
+the `profiles` row carries the user's real name (trigger usually mints it
+with the 10-digit numeric account_number; otherwise an upsert does;.
+Login auto-creates a bare row as a last resort. Verified live: fallback
+signUp creates the user on `xemnwvaymvnitldpiusx` (and retrieved the real
+Supabase error instead of "Network error";trigger 10-digit minting came
+from migration 003, separately CI-verified).. Note: direct
+`signUp` is subject to Supabase per-IP **email rate limits** (429
+`over_email_send_rate_limit`) — theis is a backend limit, not the "Network
+error" case, and clears hourly;the user's browser is unaffected in
+normal use.
 
 The earlier digit-free (`MV`+8 letters) migrations 003/004 have been
 **rewritten to match the numeric format**: 003's `handle_new_user` now mints
