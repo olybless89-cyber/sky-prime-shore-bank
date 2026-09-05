@@ -12,7 +12,7 @@
  *
  * Usage (public pages — pre-login):
  *   <script src="/chat-widget.js"></script>
- *   (no MVChat config needed — shows a "contact us" guest form)
+ *   (no PSBChat config needed — shows a "contact us" guest form)
  */
 (function () {
   'use strict';
