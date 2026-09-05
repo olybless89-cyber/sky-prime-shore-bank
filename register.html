@@ -146,7 +146,7 @@ function doRegister(e) {
   // Use Edge Function to create user (bypasses Supabase email rate limit)
   fetch("https://xemnwvaymvnitldpiusx.supabase.co/functions/v1/register", {
     method: "POST",
-    headers: { "Content-Type": "application/json", "Authorization": "Bearer <SUPA_EDGE_ANON_KEY>", "apikey": "<SUPA_EDGE_ANON_KEY>" },
+    headers: { "Content-Type": "application/json", "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhlbW53dmF5bXZuaXRsZHBpdXN4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzI5NjAsImV4cCI6MjEwNDEwODk2MH0.oVsrXJTuh-7DFNNVFaSAOxdEJmyFnl-trIDElWEShME", "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhlbW53dmF5bXZuaXRsZHBpdXN4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzI5NjAsImV4cCI6MjEwNDEwODk2MH0.oVsrXJTuh-7DFNNVFaSAOxdEJmyFnl-trIDElWEShME" },
     body: JSON.stringify({ email: email, password: pw, full_name: fullName })
   })
   .then(function(r) { return r.json().then(function(d) { return {ok: r.ok, data: d}; }); })

@@ -1,0 +1,10 @@
+# Prime Shore Bank — Supabase project config for local CLI operations.
+# Not required at runtime;used by `supabase functions deploy` (dashboard deploys need no file).
+
+project_id = "xemnwvaymvnitldpiusx"
+
+[functions.register]
+verify_jwt = true
+# Env secrets (set in the dashboard under Edge Functions → register → Secrets:
+#   SUPABASE_URL = https://xemnwvaymvnitldpiusx.supabase.co
+#   SUPA_SERVICE_ROLE_KEY = <your service-role key — NEVER commit>
