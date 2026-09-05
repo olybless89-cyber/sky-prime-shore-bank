@@ -143,7 +143,10 @@ function doRegister(e) {
 
   var fullName = first + " " + last;
 
-  // Use Edge Function to create user (bypasses Supabase email rate limit)
+  // Preferred path: edge function (bypasses Supabase email rate limit).
+  // The function is deployed to the project that owns it; if it is missing or
+  // unreachable (404/network failure), fall back to the standard signUp flow
+  // so registration never dead-ends on a "Network error".
   fetch("https://xemnwvaymvnitldpiusx.supabase.co/functions/v1/register", {
     method: "POST",
     headers: { "Content-Type": "application/json", "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhlbW53dmF5bXZuaXRsZHBpdXN4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzI5NjAsImV4cCI6MjEwNDEwODk2MH0.oVsrXJTuh-7DFNNVFaSAOxdEJmyFnl-trIDElWEShME", "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhlbW53dmF5bXZuaXRsZHBpdXN4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzI5NjAsImV4cCI6MjEwNDEwODk2MH0.oVsrXJTuh-7DFNNVFaSAOxdEJmyFnl-trIDElWEShME" },
@@ -151,20 +154,39 @@ function doRegister(e) {
   })
   .then(function(r) { return r.json().then(function(d) { return {ok: r.ok, data: d}; }); })
   .then(function(res) {
-    if (!res.ok || res.data.error) {
-      var msg = res.data.error || "Registration failed. Please try again.";
-      showErr(msg); resetBtn(); return;
-    }
-    var d = res.data;
-    // Set session in Supabase client
-    if (d.access_token) {
+    if (res.ok && res.data && !res.data.error && res.data.access_token) {
+      var d = res.data;
       sb.auth.setSession({ access_token: d.access_token, refresh_token: d.refresh_token })
         .then(function() { sendWelcomeMail(d.user.id, fullName, email); });
-    } else {
-      finishRegister();
+      return;
     }
+    // Edge function missing, errored,, or returned no session — use the direct
+    // signUp path (the trigger mints the profiles row with the 10-digit
+    // numeric account_number; login auto-creates a bare row as a fallback).
+    registerFallback(fullName, email, pw);
   })
-  .catch(function() { showErr("Network error. Please try again."); resetBtn(); });
+  .catch(function() { registerFallback(fullName, email, pw); });
+}
+
+function registerFallback(fullName, email, pw) {
+  sb.auth.signUp({ email: email, password: pw, options: { data: { full_name: fullName } } }).then(function(res) {
+    if (res.error) { showErr(res.error.message || "Registration failed. Please try again."); resetBtn(); return; }
+    var user = res.data.user;
+    // Explicitly ensure the profiles row carries the user's real name. The signup
+    // trigger usually mints it (with a 10-digit numeric account_number);if it
+    // hasn't fired yet, upsert a row now (login auto-completes it otherwise).
+    sb.from("profiles").select("id").eq("id", user.id).maybeSingle().then(function(p) {
+      if (p.error || !p.data) {
+        sb.from("profiles").upsert({ id: user.id, email: email, full_name: fullName, role: "user", status: "active" }, { onConflict: "id" })
+          .then(function() { sendWelcomeMail(user.id, fullName, email); })
+          .catch(function() { sendWelcomeMail(user.id, fullName, email); });
+      } else {
+        // Row exists — make sure the display name is the one the user typed.
+
+        sb.from("profiles").update({ full_name: fullName }).eq("id", user.id).then(function() { sendWelcomeMail(user.id, fullName, email); }).catch(function() { sendWelcomeMail(user.id, fullName, email); });
+      }
+    }).catch(function() { sendWelcomeMail(user.id, fullName, email); });
+  }).catch(function(err) { showErr((err && err.message) || "Network error. Please try again."); resetBtn(); });
 }
 
 function resetBtn() {
