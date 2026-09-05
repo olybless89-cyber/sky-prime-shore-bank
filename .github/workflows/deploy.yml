@@ -28,10 +28,16 @@ jobs:
           # below only runs once that substitution is done: EXPECTED then resolves
           # to the real embedded ref and must equal the Actions secret.
           EXPECTED=$(grep -rhoE 'https://[A-Za-z0-9_-]+\.supabase\.co' public/*.html public/*.js | head -1 | sed -E 's|https://([A-Za-z0-9_-]+)\.supabase\.co|\1|')
-          if [ -z "$SUPABASE_PROJECT_REF" ] || [ "$EXPECTED" = "<PROJECT_REF>" ]; then
+          if [ -z "$SUPABASE_PROJECT_REF" ]; then
+            echo "⚠️  SUPABASE_PROJECT_REF secret is not set — skipping the project-ref guard."
+            echo "    Set it in Settings → Secrets and variables → Actions (value: the ref embedded in the pages, e.g. the project ref from SUPA_URL."
+            echo "    The migrations step below skips too until this secret is set."
+            exit 0
+          fi
+          if [ "$EXPECTED" = "<PROJECT_REF>" ]; then
             echo "⚠️  Runtime files still use the <PROJECT_REF> placeholder — substitute"
             echo "    your Supabase ref (sed -i 's|<PROJECT_REF>|yourref|g' public/*.html public/chat-widget.js)"
-            echo "    and set the SUPABASE_PROJECT_REF secret, then rerun."
+            echo "    then rerun. (The SUPABASE_PROJECT_REF secret must match that ref.)"
             exit 0
           fi
           if [ "$SUPABASE_PROJECT_REF" != "$EXPECTED" ]; then
