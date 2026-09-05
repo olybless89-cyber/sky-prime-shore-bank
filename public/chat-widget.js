@@ -17,8 +17,8 @@
 (function () {
   'use strict';
 
-  const SUPA_URL = 'https://<PROJECT_REF>.supabase.co';
-  const SUPA_KEY = '<SUPA_ANON_KEY>';
+  const SUPA_URL = 'https://xemnwvaymvnitldpiusx.supabase.co';
+  const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhlbW53dmF5bXZuaXRsZHBpdXN4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MzI5NjAsImV4cCI6MjEwNDEwODk2MH0.oVsrXJTuh-7DFNNVFaSAOxdEJmyFnl-trIDElWEShME';
   const SUPPORT_EMAIL = 'support@primeshorebank.com';
 
   // ── Helpers ───────────────────────────────────────────────────────────────
