@@ -439,3 +439,43 @@ Do NOT insert it again — re-insertion would duplicate the widget on every page
 
 Verification: each of the 32 html files (16 pages × 2 copies`) carries exactly one
 `smartsuppchat.com/loader.js` occurrence;`<script`/`</script>` counts balanced.
+
+## Security hardening vs Google "dangerous site" flag (2026-09-06)
+Root causes found + fixed when the owner reported Google flagging the site:
+1. **Injected `https://cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.html`**
+   script was present right after the back-to-top anchor in 18 of 32 html files
+   (in the 9 marketing pages, root + public copies: contact, index, about,
+   apps, business, cards, loans, personal, terms-of-service). The `cdn-cgi`
+   domain does **not** resolve (the REAL Cloudflare email-decode script lives at
+   `cdn-cgi.cloudflare.com` and is only emitted when `data-cfemail` is used — this
+   site never uses it). Classico marker of a site-wide HTML injection; Google
+   treats such third-party script drops as malware/phishing indicators. Fix:
+   removed the script tag from all files (keep root/public in sync.
+2. **Dead form scripts**: every marketing page loaded
+   `temp/custom/assets/js/form-validator.min.js` and
+   `contact-form-script.js`,, and the latter POSTs to
+   `assets/php/form-process.php` (the removed PHP app's dead endpoint,  404).
+   Pages without a contact form (index/about/apps/business/cards/loans/
+   personal/terms-of-service) now drop both includes; contact.html keeps its own
+   inline Supabase `create_contact_message` submit (migration 009).
+3. **Missing security headers**: added `X-Content-Type-Options: nosniff`,
+   `X-Frame-Options: SAMEORIGIN`, `Referrer-Policy:
+   strict-origin-when-cross-origin`, `Content-Security-Policy:
+   frame-ancestors 'self'` to `public/router.php`; and the full set
+   (+ `Permissions-Policy`, `Strict-Transport-Security`) in `vercel.json`
+   `"headers"` block (applies to every Vercel route).
+4. **SEO/trust hygiene**: added `public/robots.txt` (disallow /login,
+   /register, /dashboard, /admin, /admin-login), `public/sitemap.xml`
+   (11 public urls), and `public/.well-known/security.txt`.
+5. **KNOWN REMAINING ISSUE (operational, NOT in repo)**: the domain
+   `primeshorebank.com` currently resolves to a **Railway fallback 404**
+   (`x-railway-fallback: true`, body `Application not found`)ather than a
+   live app — Google flagging "dangerous/deceptive" is very likely caused by
+   the live endpoint returning dead/blank content. The code in `public/` is
+   clean; the deployment behind the domain must be fixed (restart the Railway
+   service or point the domain at the Vercel deployment of `public/`) before
+   requesting re-review at Google Search Console.
+
+The fix commit (`c396e0c: fix(security): remove injected script, dead form
+endpoints, add security headers/robots/sitemap/security.txt`) is what the
+live host must contain.
