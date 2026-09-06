@@ -1,0 +1,5 @@
+Contact: mailto:security@primeshorebank.com
+Expires: 2027-01-01T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://primeshorebank.com/.well-known/security.txt
+Policy: https://primeshorebank.com/privacy-policy
