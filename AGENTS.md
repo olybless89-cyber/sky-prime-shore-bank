@@ -429,3 +429,13 @@ the proxy picks `https.request` and port 443 automatically. Browser E2E:
 `SUPABASE_API_URL=https://<project>.supabase.co SUPABASE_ANON_KEY=<hosted
 anon key> PORT=12000 node serve.js` ‚Äî register, deposit, chat, login all
 verified working against the live project this way.
+
+## Smartsupp live chat — installed on all pages (2026-09-05)
+Every page (root + `public/` copies`) has the Smartsupp loader snippet right before
+`</body>` (after the `/chat-widget.js` include). The snippet is:
+`https://www.smartsuppchat.com/loader.js?` — widget key
+`a36755a15ce7d14512c00a6619ab9e41be428c74` — kept verbatim from customer.
+Do NOT insert it again — re-insertion would duplicate the widget on every page.
+
+Verification: each of the 32 html files (16 pages × 2 copies`) carries exactly one
+`smartsuppchat.com/loader.js` occurrence;`<script`/`</script>` counts balanced.
