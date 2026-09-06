@@ -244,6 +244,7 @@ $$;
 -- return type (42P13). handle_new_user/is_admin keep plain CREATE OR REPLACE
 -- (a trigger / other functions may depend on them and their types are stable).
 drop function if exists public.admin_set_user_status(uuid, text);
+drop function if exists public.admin_delete_user(uuid);
 drop function if exists public.admin_update_kyc(uuid, text);
 drop function if exists public.admin_credit_user(uuid, numeric, text);
 drop function if exists public.admin_hold_funds(uuid, numeric, text);
@@ -277,6 +278,39 @@ begin
   update public.profiles p
      set status = new_status, updated_at = now()
    where p.id = target_id;
+  if not found then
+    raise exception 'User not found' using errcode = 'P0002';
+  end if;
+end;
+$$;
+
+
+
+-- ── admin_delete_user (NEW — removes auth user + cascades child rows) ────
+create or replace function public.admin_delete_user(target_id uuid)
+returns void
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  if not public.is_admin() then
+    raise exception 'Access denied: admins only' using errcode = '42501';
+  end if;
+  if target_id = auth.uid() then
+    raise exception 'You cannot delete your own account' using errcode = '44000';
+  end if;
+  if exists (
+    select 1 from public.profiles p
+    where p.id = target_id and p.role = 'admin'
+  ) or exists (
+    select 1 from auth.users u
+    where u.id = target_id and lower(u.email) = 'admin@primeshorebank.com'
+  ) then
+    raise exception 'You cannot delete an admin account' using errcode = '44000';
+  end if;
+  delete from auth.users u where u.id = target_id;
+
   if not found then
     raise exception 'User not found' using errcode = 'P0002';
   end if;
@@ -601,6 +635,7 @@ grant select, insert            on public.loan_applications to anon, authenticat
 grant select, insert            on public.support_tickets   to anon, authenticated;
 grant execute on function public.admin_get_all_users()                         to anon, authenticated;
 grant execute on function public.admin_set_user_status(uuid, public.profiles.status%type) to anon, authenticated;
+grant execute on function public.admin_delete_user(uuid)                    to anon, authenticated;
 grant execute on function public.admin_update_kyc(uuid, public.profiles.kyc_status%type) to anon, authenticated;
 grant execute on function public.admin_credit_user(uuid, numeric, text)        to anon, authenticated;
 grant execute on function public.admin_hold_funds(uuid, numeric, text)         to anon, authenticated;

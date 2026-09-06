@@ -652,6 +652,7 @@ body{font-family:'Inter',sans-serif;background:#0b1120;color:#e2e8f0;min-height:
 
       <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
         <button class="btn btn-ghost btn-sm" id="mu-toggle-btn" onclick="toggleUserStatus()">Toggle Status</button>
+        <button class="btn btn-danger btn-sm" id="mu-delete-btn" onclick="confirmDeleteUser()">🗑 Delete User</button>
         <select class="form-select" style="flex:1;font-size:12px;padding:6px 10px" id="mu-kyc-select" onchange="updateKyc()">
           <option value="">Update KYC Status...</option>
           <option value="unverified">Unverified</option>
@@ -1052,6 +1053,32 @@ async function toggleUserStatus() {
   setLoading('mu-toggle-btn', false, u.status === 'active' ? '🚫 Deactivate User' : '✅ Activate User');
   if (error) {
     showAlert('mu-err', error.message || 'Could not update user status. Apply SQL/supabase/001_fix_admin_user_management.sql if the RPC is missing.');
+    return;
+  }
+  closeModal('modal-user');
+  await loadUsers();
+  await loadStats();
+}
+
+// Delete a user via the admin_delete_user SECURITY DEFINER RPC. Deleting
+// the auth user FK-cascades to profiles + transactions + deposit/transfer/loan
+// + support_tickets (no orphan rows). Admins themselves cannot be deleted.
+async function confirmDeleteUser() {
+  const u = allUsers.find(x => x.id === selectedUserId);
+  if (!u) return;
+  const name = u.full_name || u.email;
+  if (!confirm('Delete user "' + name + '" permanently?\n\nThis removes their account, profile, balance, transactions, and support tickets. This cannot be undone.')) return;
+  await doDeleteUser(u);
+}
+
+async function doDeleteUser(u) {
+  const btn = document.getElementById('mu-delete-btn');
+  setLoading('mu-delete-btn', true, 'Deleting...');
+  document.getElementById('mu-err').style.display = 'none';
+  const { error } = await sb.rpc('admin_delete_user', { target_id: u.id });
+  setLoading('mu-delete-btn', false, '🗑 Delete User');
+  if (error) {
+    showAlert('mu-err', error.message || 'Could not delete user. Apply SQL/supabase/010_delete_admin_user.sql if the RPC is missing.');
     return;
   }
   closeModal('modal-user');
